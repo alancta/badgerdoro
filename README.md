@@ -1,5 +1,5 @@
 # Badgerdoro Timer - Productivity Web App
-Badgerdoro is a web application inspired by the [Pomodoro Technique]https://en.wikipedia.org/wiki/Pomodoro_Technique#:~:text=The%20Pomodoro%20Technique%20is%20a,length%2C%20separated%20by%20short%20breaks. It was created with the aim of increasing productivity among badgers who are working from home. 
+Badgerdoro is a web application inspired by the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique#:~:text=The%20Pomodoro%20Technique%20is%20a,length%2C%20separated%20by%20short%20breaks). It was created with the aim of increasing productivity among badgers who are working from home. 
 
 # How to use
 1. Decide on the task to be done.
