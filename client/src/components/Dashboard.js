@@ -1,9 +1,10 @@
 import React, { Fragment ,useEffect,useState} from "react";
 import {Container,Row,Col} from 'react-bootstrap';
-import UserIcon from './images/user'
-import Popover from 'react-bootstrap/Popover'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Button from 'react-bootstrap/Button'
+import UserIcon from './images/user';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Button from 'react-bootstrap/Button';
+import Timer from './Timer';
 
 const Dashboard = ({setAuth})=>{
     const[name,setName] = useState("");
@@ -56,6 +57,11 @@ const Dashboard = ({setAuth})=>{
   </OverlayTrigger></Col>
                 </Row>
 
+                </Container>
+                <Container>
+                    <Row>
+                        <Col xs={12}><Timer/></Col>
+                    </Row>
                 </Container>
 
             <div></div>
