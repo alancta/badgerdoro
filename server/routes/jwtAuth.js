@@ -28,10 +28,17 @@ router.post("/register", validInfo, async (req, res) => {
       [name, email, bcryptPassword]
     );
 
-    //5. generating our jwt token
-    const token = jwtGenerator(newUser.rows[0].user_id);
-    console.log(token);
-    res.json({ token });
+        //5. generating our jwt token
+        const token = jwtGenerator(newUser.rows[0].user_id);
+        console.log(token);
+        res.json({ token });
+
+    //Add reward info related to the user to our database
+    const newReward = await pool.query(
+      'INSERT INTO rewards(user_email,badgerbucks) VALUES ($1,100)',[email]
+    );
+
+
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
@@ -62,7 +69,7 @@ router.post("/login", validInfo, async (req, res) => {
     //4. Give jwt token
     const token = jwtGenerator(user.rows[0].user_id);
     res.json({ token });
-  } catch {
+  } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
   }
