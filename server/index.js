@@ -10,6 +10,10 @@ app.use(cors());
 app.use("/dashboard", require("./routes/dashboard"));
 //register and login routes
 app.use("/auth", require("./routes/jwtAuth"));
+
+//Reward routes
+app.use("/reward", require("./routes/reward"));
+
 app.listen(5000, () => {
   console.log("server is running 5000");
 });
