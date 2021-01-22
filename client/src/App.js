@@ -1,5 +1,5 @@
 import "./App.css";
-import React, {Fragment,useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import Home from "./Home";
 import Dashboard from "./components/Dashboard";
