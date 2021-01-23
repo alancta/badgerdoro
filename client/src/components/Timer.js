@@ -3,10 +3,11 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import Button from 'react-bootstrap/Button';
 import {Container,Row,Col} from 'react-bootstrap';
 
-export default function Timer() {
+export default function Timer({addBadgerBucks}) {
     
 ////////////////////////////////////////
     function TimerOptions(){
+        
 
         //For sessions
 
@@ -66,10 +67,12 @@ export default function Timer() {
         };
 
 
-        const sessionIsComplete = () =>{
+        const  sessionIsComplete = async () =>{
+            addBadgerBucks();
             setSessionComplete(!sessionComplete);
-                setSessionStart(!sessionStart);
-                setNumOfSession(numOfSession+1);
+            setSessionStart(!sessionStart);
+            setNumOfSession(numOfSession+1);
+                
             
         }
 
@@ -121,7 +124,7 @@ export default function Timer() {
       
       </div>;
 
-      const secondDiv = <CountdownCircleTimer
+      const secondDiv = <CountdownCircleTimer 
       onComplete={() => {
         // do your stuff here
           breakIsComplete();

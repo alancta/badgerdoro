@@ -19,8 +19,8 @@ try {
 
     //5. Test output
     
-    console.log("Added reward");
-    res.json("Added reward");
+    console.log("Added reward",badgerbucks);
+    res.json("Added reward ");
 } catch (error) {
     console.log(error.message);
     res.status(500).send("Server Error");
