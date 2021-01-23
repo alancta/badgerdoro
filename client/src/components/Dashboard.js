@@ -1,6 +1,8 @@
+import "./Dashboard.css"
 import React, { Fragment ,useEffect,useState} from "react";
 import {Container,Row,Col} from 'react-bootstrap';
 import UserIcon from './images/user';
+import WalletIcon from './images/wallet.png';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Button from 'react-bootstrap/Button';
@@ -48,26 +50,35 @@ const Dashboard = ({setAuth})=>{
       );
 
     return(
-        <Fragment>
-            <Container className="mt-4 container-fluid">
+        <div className="color vh-100" >
+        <Fragment >
+            <Container className="mt-4 mb-lg-4 container-fluid">
                 <Row>
-                    <Col xs={9} ><h2>Dashboard</h2></Col>
-                    <Col xs={3}><OverlayTrigger  trigger="click" key="left" placement="left" overlay={logoutPopover}>
+                    <Col xs={10} lg={11}><h2 class="text-danger">Dashboard</h2></Col>
+                    <Col xs={2} lg={1}><OverlayTrigger  trigger="click" key="left" placement="left" overlay={logoutPopover}>
                     <Button variant="outline-dark" ><UserIcon class="w-100"/></Button>
   </OverlayTrigger></Col>
                 </Row>
 
                 </Container>
-                <Container>
+                <Container className="mt-4 mt-lg-5">
                     <Row>
                         <Col xs={12}><Timer/></Col>
                     </Row>
+                    <Row class="mt-4 justify-content-center">
+                        <Col xs={12}><div class="card bg-light border  border-2 rounded rounded-3"><div class="card-body">
+                            <h6 class="card-title text-center text-danger">Your Rewards</h6>
+                            <div class="d-flex justify-content-center"><img src={WalletIcon} class="w-25" alt="wallet icon" /><h4 class="px-4 py-4 card-text text-center text-danger">BB {badgerbucks}</h4></div>
+                            
+                            </div></div></Col>
+                    </Row>
                 </Container>
 
-            <div></div>
+            
         
 
         </Fragment>
+        </div>
     );
 };
 
