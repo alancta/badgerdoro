@@ -8,9 +8,10 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Button from 'react-bootstrap/Button';
 import Timer from './Timer';
 const Dashboard = ({setAuth})=>{
-    const[name,setName] = useState("");
+    const[firstName,setFirstName] = useState("");
+    const[lastName,setLastName] = useState("");
     const[email,setEmail] = useState("");
-    const[badgerbucks,setBadgerbucks] = useState("");
+    const[badgerbucksvalue,setBadgerbucks] = useState(0);
 
     async function getNameAndReward(){
         try {
@@ -21,17 +22,14 @@ const Dashboard = ({setAuth})=>{
 
             const parseRes = await response.json();
 
-            setName(parseRes.user_name);
+            setFirstName(parseRes.user_firstname);
+            setLastName(parseRes.user_lastname);
             setEmail(parseRes.user_email);
             setBadgerbucks(parseRes.badgerbucks);
         } catch (error) {
             console.error(error.message)
         }
     }
-
-    useEffect(() => {
-        getNameAndReward();
-    },[]);
 
     const logout = (e) => {
         e.preventDefault();
@@ -42,16 +40,18 @@ const Dashboard = ({setAuth})=>{
     const logoutPopover = (
         <Popover id="popover-basic" >
           <Popover.Content>
-              {name} <br></br> {email}<br></br> 
+              {firstName} {lastName} <br></br> {email}<br></br> 
           <button className="btn btn-danger mt-4" onClick={e=> logout(e)}>Logout</button>
     </Popover.Content>
         </Popover>
       );
 
+
     const addBadgerBucks = async () => {
-        
-        const addBucks = 100;
-        const body = {email,addBucks};
+
+        // setBadgerbucks(badgerbucksvalue+100);
+        const badgerbucks = 100;
+        const body = {email,badgerbucks};
         try {
             const response = await fetch("http://localhost:5000/reward/",{
                 method:"POST",
@@ -60,12 +60,22 @@ const Dashboard = ({setAuth})=>{
             });
 
             // const parseRes = await response.json();
-
+            
             // setBadgerbucks(parseRes.badgerbucks);
         } catch (error) {
             console.error(error.message)
         }
+
+        
     };
+
+
+
+
+    useEffect(() => {
+        getNameAndReward();
+    });
+
 
 
     return(
@@ -87,15 +97,12 @@ const Dashboard = ({setAuth})=>{
                     <Row className="mt-4 justify-content-center">
                         <Col xs={12} lg={5}><div class="card bg-light border  border-2 rounded rounded-3"><div class="card-body">
                             <h6 class="card-title text-center text-danger">Your Rewards</h6>
-                            <div class="d-flex justify-content-center"><img src={WalletIcon} class="w-25" alt="wallet icon" /><h4 class="px-4 py-4 card-text text-center text-danger">BB {badgerbucks}</h4></div>
+                            <div class="d-flex justify-content-center"><img src={WalletIcon} class="w-25" alt="wallet icon" /><h4 class="px-4 py-4 card-text text-center text-danger">BB {badgerbucksvalue}</h4></div>
                             
                             </div></div></Col>
                             
                     </Row>
                 </Container>
-
-            
-        
 
         </Fragment>
         </div>
