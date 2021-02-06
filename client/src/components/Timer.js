@@ -67,8 +67,9 @@ export default function Timer({addBadgerBucks}) {
         };
 
 
-        const  sessionIsComplete = async () =>{
+        const  sessionIsComplete =   () =>{
             addBadgerBucks();
+            
             setSessionComplete(!sessionComplete);
             setSessionStart(!sessionStart);
             setNumOfSession(numOfSession+1);
@@ -103,6 +104,12 @@ export default function Timer({addBadgerBucks}) {
            setSessionState("Start Badgerdoro");
             
         };
+
+        // useEffect(()=>{
+        //     sessionIsComplete();
+        // });
+
+       
 
         const firstDiv = <div><div class="d-flex justify-content-center"><CountdownCircleTimer
         onComplete={() => {
@@ -139,8 +146,11 @@ export default function Timer({addBadgerBucks}) {
       size={300}/>
     ;
 
-    const thirdDiv = <div><h4 class="text-center">Congratulations!! You have completed all 4 Badgerdoro sessions.</h4><div class="d-flex justify-content-center"><Button variant="outline-danger mt-4  "  onClick={()=>onClickReset()}>Reset Badgerdoro</Button></div></div>
+    const thirdDiv = <div><h4 class="text-center">Congratulations!! You have completed all 4 Badgerdoro sessions.</h4><div class="d-flex justify-content-center"><Button variant="outline-danger mt-4  "  onClick={()=>onClickReset()}>Reset Badgerdoro</Button></div></div>;
         
+
+    
+
         if(!sessionComplete){
             return(firstDiv);
             
@@ -153,8 +163,13 @@ export default function Timer({addBadgerBucks}) {
             return(secondDiv);
         }
 
+    
+
+
+    
         
         };
+    
 ///////////////////////////////////////////
     return (
         <div>
