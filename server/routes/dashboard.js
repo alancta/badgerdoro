@@ -8,11 +8,12 @@ router.get("/", authorization, async (req, res) => {
     console.log("in dashboard");
     // Get User's name and email
     const user = await pool.query(
-      "SELECT user_name,user_email FROM users WHERE user_id = $1",
+      "SELECT user_firstName,user_lastName,user_email FROM users WHERE user_id = $1",
       [req.user]
     );
     
-    const userName = user.rows[0].user_name;
+    const userFirstName = user.rows[0].user_firstname;
+    const userLastName = user.rows[0].user_lastname;
     const userEmail = user.rows[0].user_email;
 
 
@@ -25,7 +26,8 @@ router.get("/", authorization, async (req, res) => {
 
     console.log(badgerbucks);
     res.json({
-      user_name:userName,
+      user_firstname:userFirstName,
+      user_lastname:userLastName,
       user_email:userEmail,
       badgerbucks:badgerbucks
     });

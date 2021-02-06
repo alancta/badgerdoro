@@ -8,7 +8,7 @@ const authorization = require("../middleware/authorization");
 router.post("/register", validInfo, async (req, res) => {
   try {
     //1. destructure the req.body (name,email, password)
-    const { name, email, password } = req.body;
+    const { firstName,lastName, email, password } = req.body;
 
     //2. check if user exists (if user exists, throw error)
     const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
@@ -16,7 +16,8 @@ router.post("/register", validInfo, async (req, res) => {
     ]);
     if (user.rows.length !== 0) {
       //if any rows are returned, that means user already exists
-      return res.status(401).send("User already exists."); // return 401 - Unauthenticated user
+      // return res.status(401).json("Invalid Password");
+      return res.status(401).json("User already exists"); // return 401 - Unauthenticated user
     }
     //3. Bcrypt the user's pw
     const saltRounds = 10;
@@ -24,8 +25,8 @@ router.post("/register", validInfo, async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, salt);
     //4. Add the new user to our databse
     const newUser = await pool.query(
-      "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, bcryptPassword]
+      "INSERT INTO users (user_firstName,user_lastName, user_email, user_password) VALUES ($1, $2, $3,$4) RETURNING *",
+      [firstName,lastName, email, bcryptPassword]
     );
 
         //5. generating our jwt token

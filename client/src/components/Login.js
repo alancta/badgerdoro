@@ -1,5 +1,11 @@
 import React, { Fragment,useState } from "react";
 import {Link} from "react-router-dom"
+import LoginIcon from "./images/LoginIcon"
+import {Container,Row,Col,Form} from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./Login.css";
+
 
 const Login = ({setAuth})=>{
 
@@ -18,6 +24,8 @@ const Login = ({setAuth})=>{
         e.preventDefault()
         try {
 
+            
+
             const body = {email,password};
             
             const response = await fetch("http://localhost:5000/auth/login",{
@@ -33,8 +41,7 @@ const Login = ({setAuth})=>{
                 // toast.success("login successfully!");
             }else{
                 setAuth(false);
-                console.log("Fails");
-                // toast.error(parseRes);
+                toast.warning("❌ Invalid email or password. Please try again!");
             }
             
 
@@ -44,18 +51,35 @@ const Login = ({setAuth})=>{
     }
 
     return(
-        <Fragment>
-        <h1>Login</h1>
-        <form onSubmit={onSubmitForm}>
-            <input type="email" name="email" placeholder="email" className="form-control my-3" value={email} onChange={e=>onChange(e)} />
-            <input type="password" name="password" placeholder="password" className="form-control my-3" value={password} onChange={e=>onChange(e)}/>
-            <button className="btn btn-success btn-block"> Submit</button>
-        </form>
-        <Link to="/register">Register</Link>
+        <div class="area container-fluid">
+            <Container><Row class=""><Col><Link  to="/" ><h3 class="text-white text-center">Badgerdoro</h3></Link></Col></Row>
+            <Row className="mt-4"><Col><h1 class="text-center text-black">Login</h1></Col></Row></Container>
+            
+            <Container className="pt-5">
+            <Row className="justify-content-center">
+            
+                <Col xs={10}><LoginIcon class=""/></Col>
+                
+            </Row>
+            </Container>
+            
+            <Form onSubmit={onSubmitForm} className="mt-4">
+                <Form.Row className="justify-content-center"><Col xs={8}>
+                <Form.Control type="email" name="email" placeholder="email" value={email} onChange={e=>onChange(e)}></Form.Control></Col></Form.Row>
+                <Form.Row className="justify-content-center mt-2"><Col xs={8}><Form.Control  type="password" name="password" placeholder="password" value={password} onChange={e=>onChange(e)}></Form.Control></Col></Form.Row>
+                <Row className="justify-content-center mt-4"><Col xs={6}><button className="text-white btn  btn-block border border-white bg-secondary "> Login</button></Col></Row>
+                
+
+
+            </Form>
+            <ToastContainer bodyClassName="text-dark"/>
+            <div class="text-center  pt-2"><Link  to="/register" class="text-dark hover-underline">New user? Click here to register.</Link></div>
+            
+        </div>
         
 
 
-        </Fragment>
+        
     );
 };
 
