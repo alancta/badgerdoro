@@ -54,7 +54,6 @@ const Register = ({setAuth})=>{
                     }else{
                         
                         localStorage.setItem("token",parseRes.token);
-        
                         setAuth(true);
                     }
      
