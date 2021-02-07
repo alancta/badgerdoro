@@ -59,9 +59,10 @@ const Dashboard = ({setAuth})=>{
                 body: JSON.stringify(body)
             });
 
-            // const parseRes = await response.json();
+            const parseRes = await response.json();
             
-            // setBadgerbucks(parseRes.badgerbucks);
+            setBadgerbucks(badgerbucksvalue+parseRes.badgerbucks);
+            console.log(badgerbucksvalue)
         } catch (error) {
             console.error(error.message)
         }

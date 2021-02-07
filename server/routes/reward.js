@@ -20,7 +20,7 @@ try {
     //5. Test output
     
     console.log("Added reward",badgerbucks);
-    res.json("Added reward ");
+    res.json("100");
 } catch (error) {
     console.log(error.message);
     res.status(500).send("Server Error");
