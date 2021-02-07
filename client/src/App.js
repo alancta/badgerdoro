@@ -19,7 +19,7 @@ function App() {
 
   async function isAuth() {
     try {
-      const response = await fetch("http://localhost:5000/auth/is-verify", {
+      const response = await fetch("http://localhost:5000/auth/is-verified", {
         method: "GET",
         headers: { token: localStorage.token }
       });
@@ -40,7 +40,12 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" render={Home} />
+          <Route exact path="/" render={props =>
+              !isAuthenticated ? (
+                <Home/>
+              ) : (
+                <Redirect to="/dashboard" />
+              )} />
           <Route
             exact
             path="/login"
